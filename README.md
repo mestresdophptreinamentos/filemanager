@@ -4,19 +4,19 @@ Gerenciador de arquivos desenvolvido em PHP 7 - É um conjunto de métodos respo
 File manager developed in PHP 7 - It is a set of methods responsible for managing folders, files and directories. We are in the first version of this application.
 
 
-**Instalação (Installation)**
+## **Instalação (Installation)**
 
 FileManager está disponível via composer:
 
 FileManager is available via Composer:
 
-"mestresdophp/filemanager": "1.0.*"
+`"mestresdophp/filemanager": "1.0.*"`
 or run
 
-composer require mestresdophp/filemanager
+`composer require mestresdophp/filemanager`
 
 
-**Documentação (Documentation)**
+## **Documentação (Documentation)**
 
 Para maiores detalhes de como utilizar a aplicação, criamos um arquivo chamado sample.php que contém todas as formas de chamar os métodos, bem como seus parâmetros que devem ser utilizados.
 
@@ -53,20 +53,20 @@ Example 2: Single File Upload Method Call:
  }`
 
 
-**Suporte (Support)**
+## **Suporte (Support)**
 
 Se você encontrar algum problema de segurança, erro, bug ou qualquer outra coisa que comprometa o funcionamento, por favor, nos encaminhe um e-mail para [contato@mestresdophp.com.br](contato@mestresdophp.com.br) .
 
 If you find any security problem, error, bug or anything else that compromises the operation, please send us an email to [contato@mestresdophp.com.br](contato@mestresdophp.com.br)  .
 
 
-**Créditos (Credits)**
+## **Créditos (Credits)**
 
 Jeferson Souza (Developer)
 
 Mestres do PHP Treinamentos (Team)
 
 
-**Licença (License)**
+## **Licença (License)**
 
 The MIT License (MIT).

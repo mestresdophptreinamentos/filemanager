@@ -128,8 +128,8 @@ class Files
      * @return array
      */
     private function ListFolders($dir) {
-        $folder;
-        $mount;
+        $folder = '';
+        $mount = '';
 
         //Separa as pastas dos arquivos
         $folders = glob("{$dir}/*", GLOB_ONLYDIR);

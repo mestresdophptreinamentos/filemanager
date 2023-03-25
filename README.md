@@ -68,7 +68,7 @@ $Upload->UploadFile('Uploads', 'attach');
 
 Se você encontrar algum problema de segurança, erro, bug ou qualquer outra coisa que comprometa o funcionamento, por favor, nos encaminhe um e-mail para [contato@mestresdophp.com.br](contato@mestresdophp.com.br) .
 
-If you find any security problem, error, bug or anything else that compromises the operation, please send us an email to **[contato@mestresdophp.com.br]**(contato@mestresdophp.com.br)  .
+If you find any security problem, error, bug or anything else that compromises the operation, please send us an email to [contato@mestresdophp.com.br](contato@mestresdophp.com.br)  .
 
 
 ## **Créditos (Credits)**

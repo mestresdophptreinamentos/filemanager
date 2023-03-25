@@ -45,9 +45,11 @@ Exemplo 2: Chamada de Método de Upload de Único Arquivo:
 
 Example 2: Single File Upload Method Call:
 
-```$Upload = new Controller\Upload();
+```
+$Upload = new Controller\Upload();
 
- $Upload->UploadFile('Uploads', 'attach');```
+$Upload->UploadFile('Uploads', 'attach');
+```
  
  Parametros: ('Nome da Pasta ', 'o atributo Name do input files');
  

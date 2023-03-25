@@ -21,6 +21,7 @@ use Controller\Files;
 
 class Upload {
 
+    public $response;
 
     /**
      * Método público responsável por gerenciar a criação de pastas.
@@ -134,7 +135,7 @@ class Upload {
 
                 $newFileName[$i] = md5($fileName[$i]) . time() . '.' . $fileExt[$i];
 
-                $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/ '. date('d') . '/';
+                $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/'. date('d') . '/';
 
                 $destination[$i] = $folderDir . $newFileName[$i];
 

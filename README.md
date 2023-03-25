@@ -47,7 +47,9 @@ Example 2: Single File Upload Method Call:
  Note: It is important to place the Upload call within the statement below to prevent the method from being executed without submitting the form:
  
  `if(isset($_POST['send'])) {
+ 
     $Upload->UploadFile('Uploads', 'attach');
+    
  }`
 
 

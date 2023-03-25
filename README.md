@@ -33,7 +33,6 @@ Example 1: File Creation Method Call:
 
 ```
 $Files = new Controller\Files();
-
 $Files->CreateFile("Documents/Reads/", "read1.txt", "teste3");
 ```
 
@@ -47,7 +46,6 @@ Example 2: Single File Upload Method Call:
 
 ```
 $Upload = new Controller\Upload();
-
 $Upload->UploadFile('Uploads', 'attach');
 ```
  
@@ -61,9 +59,7 @@ $Upload->UploadFile('Uploads', 'attach');
  
  ```
  if(isset($_POST['send'])) {
- 
     $Upload->UploadFile('Uploads', 'attach');
-    
  }
 ```
 

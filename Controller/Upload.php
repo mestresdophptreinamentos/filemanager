@@ -108,9 +108,9 @@ class Upload {
                 $upload = $_FILES['attach'];
                 $fileName[$i] = $upload['name'][$i];
                 $fileSize[$i] = $upload['size'][$i];
-                $fileType[$i] = $upload['type'][$i];
+                //$fileType[$i] = $upload['type'][$i];
                 $fileTemp[$i] = $upload['tmp_name'][$i];
-                $fileError[$i] = $upload['error'][$i];
+                //$fileError[$i] = $upload['error'][$i];
                 $fileExt[$i] = mb_strtolower(pathinfo($fileName[$i], PATHINFO_EXTENSION));
 
                 //Verifica se o tamanho do arquivo não ultrapassa 5Mb

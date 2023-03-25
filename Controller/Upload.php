@@ -27,11 +27,11 @@ class Upload {
      * @param $dir
      * @return string
      */
-    public function Folder($dir){
+    public function Folder($dir) {
 
         date_default_timezone_set("America/Sao_paulo");
 
-        $folderDir = $dir.'/'.date('Y').'/'.date('m').'/'.date('d').'/';
+        $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/';
 
         if(!is_dir($folderDir) && !file_exists($folderDir)) {
             if (!is_dir($dir) && !file_exists($dir)) {
@@ -62,7 +62,7 @@ class Upload {
      * @param $input_name
      * @return mixed|string
      */
-    private function VerifySimple($input_name){
+    private function VerifySimple($input_name) {
         $upload = $_FILES[$input_name];
         $fileName = $upload['name'];
         $fileSize = $upload['size'];
@@ -72,7 +72,7 @@ class Upload {
         $fileExt =  mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         //Verifica se o tamanho do arquivo não ultrapassa 5Mb
-        if($fileSize > 5242880){
+        if($fileSize > 5242880) {
             $response = "Arquivo maior que 5Mb  não é permitido.";
             return $response;
         }
@@ -84,7 +84,7 @@ class Upload {
             || $fileExt == 'eml' || $fileExt == 'tiff' || $fileExt == 'tif' || $fileExt == 'gif' || $fileExt == 'html'
             || $fileExt == 'htm' || $fileExt == 'xhtml' || $fileExt == 'src' || $fileExt == 'tmp' || $fileExt == 'cab'
             || $fileExt == 'dll' || $fileExt == 'sys' || $fileExt == 'ai' || $fileExt == 'psd' || $fileExt == 'crd'
-            || $fileExt == 'raw' || $fileExt == 'jfif' || $fileExt == 'exif' || $fileExt == 'eps' || $fileExt == 'mkv'){
+            || $fileExt == 'raw' || $fileExt == 'jfif' || $fileExt == 'exif' || $fileExt == 'eps' || $fileExt == 'mkv') {
 
             $response = "Este tipo de arquivo não é permitido.";
             return $response;
@@ -100,7 +100,7 @@ class Upload {
      * @param $dir
      * @return array|string|void
      */
-    private function VerifyMultiple(bool $par = false, $count = '', $dir){
+    private function VerifyMultiple(bool $par = false, $count = '', $dir) {
         date_default_timezone_set("America/Sao_paulo");
 
         if($par == true){
@@ -126,7 +126,7 @@ class Upload {
                     || $fileExt[$i] == 'eml' || $fileExt[$i] == 'tiff' || $fileExt[$i] == 'tif' || $fileExt[$i] == 'gif' || $fileExt[$i] == 'html'
                     || $fileExt[$i] == 'htm' || $fileExt[$i] == 'xhtml' || $fileExt[$i] == 'src' || $fileExt[$i] == 'tmp' || $fileExt[$i] == 'cab'
                     || $fileExt[$i] == 'dll' || $fileExt[$i] == 'sys' || $fileExt[$i] == 'ai' || $fileExt[$i] == 'psd' || $fileExt[$i] == 'crd'
-                    || $fileExt[$i] == 'raw' || $fileExt[$i] == 'jfif' || $fileExt[$i] == 'exif' || $fileExt[$i] == 'eps' || $fileExt[$i] == 'mkv'){
+                    || $fileExt[$i] == 'raw' || $fileExt[$i] == 'jfif' || $fileExt[$i] == 'exif' || $fileExt[$i] == 'eps' || $fileExt[$i] == 'mkv') {
 
                     $response = "{$fileName[$i]} - Este tipo de arquivo não é permitido.";
                     return $response;
@@ -134,7 +134,7 @@ class Upload {
 
                 $newFileName[$i] = md5($fileName[$i]) . time() . '.' . $fileExt[$i];
 
-                $folderDir = $dir.'/'.date('Y').'/'.date('m').'/'.date('d').'/';
+                $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/ '. date('d') . '/';
 
                 $destination[$i] = $folderDir . $newFileName[$i];
 
@@ -155,7 +155,7 @@ class Upload {
      * @param $input_name
      * @return array
      */
-    public function UploadFile($dir, $input_name){
+    public function UploadFile($dir, $input_name) {
         ini_get('post_max_size');
 
         $folderDir = $this->Folder($dir);
@@ -181,12 +181,12 @@ class Upload {
      * @param $input_name
      * @return array|string|void
      */
-    public function UploadMultiplesFiles($dir, $input_name){
+    public function UploadMultiplesFiles($dir, $input_name) {
         ini_get('post_max_size');
 
         $upload = $_FILES[$input_name];
 
-        if($upload != ''){
+        if($upload != '') {
             $count = count($upload['name']);
         }
 
@@ -203,14 +203,14 @@ class Upload {
      * @param $DirDest
      * @return bool
      */
-    public function CloneFiles(array $file, $DirOrigin, $DirDest, $folder, $subFolder){
+    public function CloneFiles(array $file, $DirOrigin, $DirDest, $folder, $subFolder) {
 
         $Files = new Files();
         $Files -> CreateSubDir($folder, $subFolder);
 
         $Files = new Files();
 
-        for($a = 0; $a < count($file); $a++){
+        for($a = 0; $a < count($file); $a++) {
             $Files->MoveFile([$file[$a]], $DirOrigin, $DirDest);
 
             $Origin = "{$DirDest}/{$file[$a]}";
@@ -232,12 +232,12 @@ class Upload {
      * @param $subFolder
      * @return void
      */
-    public function CloneFilesPlus(array $files, $DirOrigin, $DirDest, $folder, $subFolder){
+    public function CloneFilesPlus(array $files, $DirOrigin, $DirDest, $folder, $subFolder) {
 
         $Files = new Files();
         $Files -> CreateSubDir($folder, $subFolder);
 
-        for($a = 0; $a < count($files); $a++){
+        for($a = 0; $a < count($files); $a++) {
             $Files->MoveFile([$files[$a]], $DirOrigin, $DirDest);
         }
 

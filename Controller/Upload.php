@@ -33,7 +33,7 @@ class Upload {
 
         $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/';
 
-        if(!is_dir($folderDir) && !file_exists($folderDir)) {
+        if (!is_dir($folderDir) && !file_exists($folderDir)) {
             if (!is_dir($dir) && !file_exists($dir)) {
                 mkdir($dir, '0755');
             }
@@ -72,13 +72,13 @@ class Upload {
         $fileExt =  mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         //Verifica se o tamanho do arquivo não ultrapassa 5Mb
-        if($fileSize > 5242880) {
+        if ($fileSize > 5242880) {
             $response = "Arquivo maior que 5Mb  não é permitido.";
             return $response;
         }
 
         //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, imagem, vídeo ou áudio.
-        if($fileExt == 'php' || $fileExt == 'js' || $fileExt == 'css' || $fileExt == 'jsp' || $fileExt == 'asp'
+        if ($fileExt == 'php' || $fileExt == 'js' || $fileExt == 'css' || $fileExt == 'jsp' || $fileExt == 'asp'
             || $fileExt == 'net' || $fileExt == 'exe' || $fileExt == 'bat' || $fileExt == 'msi' || $fileExt == 'cmd'
             || $fileExt == 'shell' || $fileExt == 'ini' || $fileExt == 'py' || $fileExt == 'sql' || $fileExt == 'oft'
             || $fileExt == 'eml' || $fileExt == 'tiff' || $fileExt == 'tif' || $fileExt == 'gif' || $fileExt == 'html'
@@ -103,8 +103,8 @@ class Upload {
     private function VerifyMultiple(bool $par = false, $count = '', $dir) {
         date_default_timezone_set("America/Sao_paulo");
 
-        if($par == true){
-            for($i = 0; $i < $count; $i++) {
+        if ($par == true){
+            for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES['attach'];
                 $fileName[$i] = $upload['name'][$i];
                 $fileSize[$i] = $upload['size'][$i];
@@ -120,7 +120,7 @@ class Upload {
                 }
 
                 //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, imagem, vídeo ou áudio.
-                if($fileExt[$i] == 'php' || $fileExt[$i] == 'js' || $fileExt[$i] == 'css' || $fileExt[$i] == 'jsp' || $fileExt[$i] == 'asp'
+                if ($fileExt[$i] == 'php' || $fileExt[$i] == 'js' || $fileExt[$i] == 'css' || $fileExt[$i] == 'jsp' || $fileExt[$i] == 'asp'
                     || $fileExt[$i] == 'net' || $fileExt[$i] == 'exe' || $fileExt[$i] == 'bat' || $fileExt[$i] == 'msi' || $fileExt[$i] == 'cmd'
                     || $fileExt[$i] == 'shell' || $fileExt[$i] == 'ini' || $fileExt[$i] == 'py' || $fileExt[$i] == 'sql' || $fileExt[$i] == 'oft'
                     || $fileExt[$i] == 'eml' || $fileExt[$i] == 'tiff' || $fileExt[$i] == 'tif' || $fileExt[$i] == 'gif' || $fileExt[$i] == 'html'
@@ -163,7 +163,7 @@ class Upload {
 
         $fileName = $upload['name'];
         $fileTemp = $upload['tmp_name'];
-        $fileExt =  mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         $newFileName = md5($fileName).time().'.'.$fileExt;
         $destination = $folderDir . $newFileName;
@@ -186,7 +186,7 @@ class Upload {
 
         $upload = $_FILES[$input_name];
 
-        if($upload != '') {
+        if ($upload != '') {
             $count = count($upload['name']);
         }
 
@@ -210,7 +210,7 @@ class Upload {
 
         $Files = new Files();
 
-        for($a = 0; $a < count($file); $a++) {
+        for ($a = 0; $a < count($file); $a++) {
             $Files->MoveFile([$file[$a]], $DirOrigin, $DirDest);
 
             $Origin = "{$DirDest}/{$file[$a]}";
@@ -237,7 +237,7 @@ class Upload {
         $Files = new Files();
         $Files -> CreateSubDir($folder, $subFolder);
 
-        for($a = 0; $a < count($files); $a++) {
+        for ($a = 0; $a < count($files); $a++) {
             $Files->MoveFile([$files[$a]], $DirOrigin, $DirDest);
         }
 

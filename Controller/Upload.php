@@ -93,7 +93,7 @@ class Upload {
     }
 
     /**
-     * Método privado responsável por gerenciar armazenamento de informações do upload de vários arquivos.
+     * Método privado responsável por gerenciar armazenamento de informações do upload de vários arquivos. 
      * @param bool $par
      * @param $count
      * @param $dir

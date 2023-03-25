@@ -21,6 +21,10 @@ use Controller\Files;
 
 class Upload {
 
+    public $response;
+    public $fileName;
+    public $fileExt;
+    public $fileSize;
 
     /**
      * Método público responsável por gerenciar a criação de pastas.

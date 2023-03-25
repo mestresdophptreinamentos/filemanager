@@ -103,13 +103,13 @@ class Upload {
         date_default_timezone_set("America/Sao_paulo");
         
         if ($par) {
-            $fileName[0] = '';
-            $fileSize[0] = '';
-            $fileType[0] = '';
-            $fileTemp[0] = '';
-            $fileError[0] = '';
-            $fileExt[0] = '';
-            $destination[0] = '';
+            $fileName;
+            $fileSize;
+            $fileType;
+            $fileTemp;
+            $fileError;
+            $fileExt;
+            $destination';
             
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES['attach'];

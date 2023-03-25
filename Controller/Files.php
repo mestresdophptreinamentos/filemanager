@@ -88,7 +88,7 @@ class Files
         $fread = fopen($file, 'r');
 
         //Apresenta em tela o conteúdo do arquivo.
-        while($showData = fgets($fread)) {
+        while ($showData = fgets($fread)) {
             echo "{$showData}<br>";
         }
 
@@ -109,14 +109,14 @@ class Files
         $folder = $Upload ->Folder($folder);
 
         //Verifica se os arquivos já existem, se sim, retorna false.
-        foreach($files as $file) {
+        foreach ($files as $file) {
             if (file_exists($dir . '/' . $file)) {
                 return false;
             }
         }
 
         //Cria através do for os arquivos na pasta indicada
-        for($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             $fopen = fopen($dir . '/' . $files[$i], 'w');
             fwrite($fopen, $contents[$i]);
             fclose($fopen);
@@ -169,10 +169,10 @@ class Files
         $dirVerify = str_replace("\\", "/", $dir);
 
         //Verifica se o diretório e se o arquivo não existem no projeto, se não existir cria a pasta.
-        if(!is_dir($dirVerify) && !file_exists($dirVerify)) {
+        if (!is_dir($dirVerify) && !file_exists($dirVerify)) {
             mkdir($dirVerify, "0755");
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -189,10 +189,10 @@ class Files
         $dirVerify = str_replace("\\", "/", $dir);
 
         //Verifica se o diretório e se o arquivo não existem no projeto, se não existir cria a subpasta.
-        if(!is_dir($dirVerify .'/'.$folder) && !file_exists($dirVerify .'/'.$folder)) {
+        if (!is_dir($dirVerify .'/'.$folder) && !file_exists($dirVerify .'/'.$folder)) {
             mkdir($dirVerify .'/'.$folder, "0755");
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -207,11 +207,11 @@ class Files
     public function CreateFile($dir, $file = "", $text = "") {
 
         //Verifica se o arquivo existe
-        if(file_exists($dir .'/'.$file)) {
+        if (file_exists($dir . '/' .$file)) {
             return false;
         }
 
-        $this->mountFileWrite($dir,$file, $text);
+        $this->mountFileWrite($dir, $file, $text);
         return true;
     }
 
@@ -229,11 +229,11 @@ class Files
         $countContents = count($contents);
 
         //Verifica se os arrays dos parâmetros $files e $contents possuem a mesma quantidade de valores.
-        if($countContents != $countFiles) {
+        if ($countContents != $countFiles) {
             return '<p> Número de arrays: files e contents não são iguais.</p>';
         }
 
-        $this->FileMultiple ($folder, $dir, $files, $countFiles, $contents);
+        $this->FileMultiple($folder, $dir, $files, $countFiles, $contents);
         return true;
     }
 
@@ -244,7 +244,7 @@ class Files
      */
     public function FileRead($file) {
 
-        if(!file_exists($file)) {
+        if (!file_exists($file)) {
             return false;
         }
 
@@ -266,7 +266,7 @@ class Files
      */
     public function FileWrite($file, $text) {
 
-        $this->mountFileRewrite($dir,$file, $text);
+        $this->mountFileRewrite($dir, $file, $text);
         return true;
     }
 
@@ -278,8 +278,8 @@ class Files
      */
     public function FileReadWrite($file, $text) {
 
-        $this->mountFileReadWrite($dir,$file, $text);
-        $this->mountFileReadData($dir,$file, $text);
+        $this->mountFileReadWrite($dir, $file, $text);
+        $this->mountFileReadData($dir, $file, $text);
 
     }
 
@@ -288,7 +288,7 @@ class Files
      * @param $dir
      * @return bool
      */
-    public function RemoveDir ($dir) {
+    public function RemoveDir($dir) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
@@ -297,12 +297,12 @@ class Files
         $files = array_diff(scandir($dirVerify), array('.', '..'));
 
         //Verifica se diretório informado existe e se é um diretório.
-        if(is_dir($dirVerify) && file_exists($dirVerify)) {
+        if (is_dir($dirVerify) && file_exists($dirVerify)) {
 
             //Desmembra os arquivos para ser processado individualmente
-            foreach($files as $file) {
+            foreach ($files as $file) {
                 //Se não existe nenhum arquivo, deleta a pasta
-                if(is_dir($dirVerify."/".$file)) {
+                if (is_dir($dirVerify."/".$file)) {
                     delTree($dirVerify."/".$file);
                 } else {
                     //Se existir arquivo na pasta, faça a exclusão do mesmo, até limpar a pasta.
@@ -313,7 +313,7 @@ class Files
             //Remove o diretório informado.
             rmdir($dir);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -328,10 +328,10 @@ class Files
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
 
-        if(file_exists($dirVerify)) {
+        if (file_exists($dirVerify)) {
             unlink($dirVerify);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -348,17 +348,17 @@ class Files
         $dirVerify = str_replace("\\", "/", $dir);
 
         //Verifica se diretório informado existe.
-        if(is_dir($dirVerify) && file_exists($dirVerify)) {
+        if (is_dir($dirVerify) && file_exists($dirVerify)) {
 
             //Processa cada um dos arquivos mencionados no parâmetro $files
-            for($a = 0; $a < count($files); $a++) {
+            for ($a = 0; $a < count($files); $a++) {
 
                 //Se existir o diretório, mas não existir o arquivo, retorna false.
-                if(is_dir($dirVerify."/".$files[$a]) && !file_exists($dirVerify."/".$files[$a])) {
+                if (is_dir($dirVerify."/".$files[$a]) && !file_exists($dirVerify."/".$files[$a])) {
                     return false;
                 } else {
                     //Verifica se o arquivo existe, se sim, faz a exclusão.
-                    if(file_exists($dirVerify."/".$files[$a])) {
+                    if (file_exists($dirVerify."/".$files[$a])) {
                         unlink($dirVerify."/".$files[$a]);
                     } else {
                         echo "Esse Arquivo Não Existe: {$files[$a]}<br>";
@@ -380,17 +380,17 @@ class Files
     public function MoveFile(array $file, $DirOrigin, $DirDest) {
 
         //Verifica se diretório e o arquivo informado existem.
-        if(is_dir($DirOrigin) && file_exists($DirOrigin)) {
+        if (is_dir($DirOrigin) && file_exists($DirOrigin)) {
 
             //Desmembra os arquivos que devem ser movidos de pastas
-            for($a = 0; $a < count($file); $a++) {
+            for ($a = 0; $a < count($file); $a++) {
 
                 //Atribui-lhes o caminho de origem e de destino.
                 $Origin = "{$DirOrigin}/{$file[$a]}";
                 $Dest = "{$DirDest}/{$file[$a]}";
 
                 //Arquivos existindo, faz a cópia (copy) do mesmo para a pasta de destino e logo em seguida remove (unlink)
-                if(file_exists($Origin)) {
+                if (file_exists($Origin)) {
                     copy($Origin, $Dest);
                     unlink($Origin);
                 } else {
@@ -413,7 +413,7 @@ class Files
     public function RenameDir($dir, $rename) {
 
         //Verifica se o diretório e a pasta existe
-        if(is_dir($dir) && file_exists($dir)) {
+        if (is_dir($dir) && file_exists($dir)) {
 
             //Renomeia o diretório (nome atual: $dir) para o (novo nome: $rename).
             rename ($dir, $rename);
@@ -433,7 +433,7 @@ class Files
     public function RenameFile($file, $rename) {
 
         //Verifica se o diretório e a pasta existe
-        if(file_exists($file)) {
+        if (file_exists($file)) {
 
             //Renomeia o arquivo (nome atual: $file) para o (novo nome: $rename).
             rename ($file, $rename);
@@ -456,21 +456,21 @@ class Files
         $calc   = $return['calc'];
 
         //Desmembra as pastas do diretório
-        for($a = 0; $a < $calc; $a++) {
+        for ($a = 0; $a < $calc; $a++) {
             echo $return['mount'][$a];
         }
 
         $this->ListFiles($dir);
 
         //Mostra as subpastas e seus arquivos
-        for($i = 0; $i < $calc; $i++) {
+        for ($i = 0; $i < $calc; $i++) {
             foreach (glob("{$folder[$i]}/*.*") as $arquivo) {
 
                 //Faço o desmembramento dos valores através do explode
                 $explode = explode('/', $arquivo);
 
                 //Separo e capturo somente os valores que forem válidos e pertencentes a pasta/subpasta/arquivos
-                if($arquivo == $explode[0].'/'.$explode[1].'/'.$explode[2]) {
+                if ($arquivo == $explode[0].'/'.$explode[1].'/'.$explode[2]) {
 
                     //Monto a apresentação.
                     $mount = $explode[0].'/'.$explode[1].'/'.$explode[2];

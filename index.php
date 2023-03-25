@@ -1,9 +1,9 @@
 <?php
- require_once 'Controller/Files.php';
- require_once 'Controller/Upload.php';
+  require_once 'Controller/Files.php';
+  require_once 'Controller/Upload.php';
 
- $Files = new Controller\Files();
- $Upload = new Controller\Upload();
+  $Files = new Controller\Files();
+  $Upload = new Controller\Upload();
 
 ?>
 

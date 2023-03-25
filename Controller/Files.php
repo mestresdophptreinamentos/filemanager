@@ -17,7 +17,7 @@ namespace Controller;
  *  Homepage: www.mestresdophp.com.br
  * */
 
-use Controller\Files;
+use Controller\Upload;
 
 class Files
 {
@@ -63,7 +63,7 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileRewrite($dir, $file, $text) {
+    private function mountFileRewrite($file, $text, $dir = '') {
         $Upload = new Upload();
         $Upload ->Folder($dir);
 
@@ -81,7 +81,7 @@ class Files
      */
     private function mountFileReadData($dir, $file) {
         $Upload = new Upload();
-        $folder = $Upload ->Folder($dir);
+        $Upload ->Folder($dir);
 
         //Após escrever, abre o arquivo para leitura
         $fread = fopen($file, 'r');
@@ -128,6 +128,8 @@ class Files
      * @return array
      */
     private function ListFolders($dir) {
+        $folder;
+        $mount;
 
         //Separa as pastas dos arquivos
         $folders = glob("{$dir}/*", GLOB_ONLYDIR);
@@ -266,7 +268,7 @@ class Files
      */
     public function FileWrite($file, $text) {
 
-        $this->mountFileRewrite($dir, $file, $text);
+        $this->mountFileRewrite($file, $text);
         return true;
     }
 

@@ -10,15 +10,15 @@ FileManager está disponível via composer:
 
 FileManager is available via Composer:
 
-`
+```
 "mestresdophp/filemanager": "1.0.*"
-`
+```
 
 or run
 
-`
+```
 composer require mestresdophp/filemanager
-`
+```
 
 
 ## **Documentação (Documentation)**

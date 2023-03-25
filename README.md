@@ -11,6 +11,7 @@ FileManager está disponível via composer:
 FileManager is available via Composer:
 
 `"mestresdophp/filemanager": "1.0.*"`
+
 or run
 
 `composer require mestresdophp/filemanager`
@@ -25,6 +26,7 @@ For more details on how to use the application, we created a file called sample.
 Exemplo 1: Chamada de Método de Criação de Arquivo: 
 
 Example 1: File Creation Method Call:
+
 `$Files = new Controller\Files();
 $Files->CreateFile("Documents/Reads/", "read1.txt", "teste3");`
 
@@ -35,6 +37,7 @@ Parameters ("Path to the folder", "File name", "Content that will be written in 
 Exemplo 2: Chamada de Método de Upload de Único Arquivo:
 
 Example 2: Single File Upload Method Call:
+
 `$Upload = new Controller\Upload();
  $Upload->UploadFile('Uploads', 'attach');`
  

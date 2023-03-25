@@ -1,12 +1,3 @@
-<?php
-  require_once 'Controller/Files.php';
-  require_once 'Controller/Upload.php';
-
-  $Files = new Controller\Files();
-  $Upload = new Controller\Upload();
-
-?>
-
 <style>
     form{ margin: 50px 30%; width: 40%; background-color: #eee; padding: 20px;}
     button{padding: 10px 20px; background-color: #999; color: #fff; border-radius: 5px; -webkit-border-radius: 5px;
@@ -23,4 +14,3 @@
     <!-- <input type="file" name="attach">-->
    <button name="send"> Anexar</button>
 </form>
-

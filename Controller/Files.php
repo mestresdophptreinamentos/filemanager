@@ -326,7 +326,7 @@ class Files
      * @param $dir
      * @return bool
      */
-    public function RemoveFile ($dir) {
+    public function RemoveFile($dir) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
@@ -478,7 +478,7 @@ class Files
                 if ($arquivo == $explode[0] . '/' . $explode[1] . '/' . $explode[2]) {
 
                     //Monto a apresentação.
-                    $mount = $explode[0] . '/'. $explode[1] . '/' . $explode[2];
+                    $mount = $explode[0] . '/' . $explode[1] . '/' . $explode[2];
                     echo "<b>Arquivos da Subpasta - '{$dir}':</b><br>&nbsp;&nbsp;&nbsp;<i>+ {$mount}</i><br><br>";
                 }
 

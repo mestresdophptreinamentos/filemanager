@@ -29,13 +29,13 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileWrite($dir, $file, $text){
+    private function mountFileWrite($dir, $file, $text) {
         $Upload = new Upload();
         $folder = $Upload ->Folder($dir);
 
         //Se o arquivo não existir, cria o mesmo.
         $fopen = fopen($folder . $file, 'w');
-        fwrite ($fopen, $text);
+        fwrite($fopen, $text);
         fclose($fopen);
     }
 
@@ -46,7 +46,7 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileReadWrite($dir, $file, $text){
+    private function mountFileReadWrite($dir, $file, $text) {
         $Upload = new Upload();
         $folder = $Upload ->Folder($dir);
 
@@ -63,7 +63,7 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileRewrite($dir, $file, $text){
+    private function mountFileRewrite($dir, $file, $text) {
         $Upload = new Upload();
         $folder = $Upload ->Folder($dir);
 
@@ -80,7 +80,7 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileReadData($dir, $file, $text){
+    private function mountFileReadData($dir, $file, $text) {
         $Upload = new Upload();
         $folder = $Upload ->Folder($dir);
 
@@ -88,7 +88,7 @@ class Files
         $fread = fopen($file, 'r');
 
         //Apresenta em tela o conteúdo do arquivo.
-        while($showData = fgets($fread)){
+        while($showData = fgets($fread)) {
             echo "{$showData}<br>";
         }
 
@@ -104,7 +104,7 @@ class Files
      * @param $contents
      * @return false|void
      */
-    private function FileMultiple ($folder, $dir, $files, $count, $contents){
+    private function FileMultiple ($folder, $dir, $files, $count, $contents) {
         $Upload = new Upload();
         $folder = $Upload ->Folder($folder);
 
@@ -116,7 +116,7 @@ class Files
         }
 
         //Cria através do for os arquivos na pasta indicada
-        for($i = 0; $i < $count; $i++){
+        for($i = 0; $i < $count; $i++) {
             $fopen = fopen($dir . '/' . $files[$i], 'w');
             fwrite($fopen, $contents[$i]);
             fclose($fopen);
@@ -128,7 +128,7 @@ class Files
      * @param $dir
      * @return array
      */
-    private function ListFolders ($dir){
+    private function ListFolders ($dir) {
 
         //Separa as pastas dos arquivos
         $folders = glob ("{$dir}/*", GLOB_ONLYDIR);
@@ -151,7 +151,7 @@ class Files
      * @param $dir
      * @return void
      */
-    private function ListFiles($dir){
+    private function ListFiles($dir) {
         //Mostra arquivos da pasta raiz
         foreach (glob("{$dir}/*.*") as $arquivo) {
             echo "<b>Arquivos do Diretório - '{$dir}':</b><br>&nbsp;&nbsp;&nbsp; <i>- {$arquivo}</i><br><br>";
@@ -163,13 +163,13 @@ class Files
      * @param $dir
      * @return bool
      */
-    public function CreateDir($dir){
+    public function CreateDir($dir) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
 
         //Verifica se o diretório e se o arquivo não existem no projeto, se não existir cria a pasta.
-        if(!is_dir($dirVerify) && !file_exists($dirVerify)){
+        if(!is_dir($dirVerify) && !file_exists($dirVerify)) {
             mkdir($dirVerify, "0755");
             return true;
         }else{
@@ -183,13 +183,13 @@ class Files
      * @param $folder
      * @return bool
      */
-    public function CreateSubDir($dir, $folder){
+    public function CreateSubDir($dir, $folder) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
 
         //Verifica se o diretório e se o arquivo não existem no projeto, se não existir cria a subpasta.
-        if(!is_dir($dirVerify .'/'.$folder) && !file_exists($dirVerify .'/'.$folder)){
+        if(!is_dir($dirVerify .'/'.$folder) && !file_exists($dirVerify .'/'.$folder)) {
             mkdir($dirVerify .'/'.$folder, "0755");
             return true;
         }else{
@@ -204,10 +204,10 @@ class Files
      * @param $text
      * @return bool
      */
-    public function CreateFile($dir, $file = "", $text = ""){
+    public function CreateFile($dir, $file = "", $text = "") {
 
         //Verifica se o arquivo existe
-        if(file_exists($dir .'/'.$file)){
+        if(file_exists($dir .'/'.$file)) {
             return false;
         }
 
@@ -222,14 +222,14 @@ class Files
      * @param array $contents
      * @return bool|string
      */
-    public function CreateFileMultiple ($folder, $dir, array $files, array $contents){
+    public function CreateFileMultiple ($folder, $dir, array $files, array $contents) {
 
         //Faz a contagem dos arrays dos parâmetros enviados pela aplicação
         $countFiles = count($files);
         $countContents = count($contents);
 
         //Verifica se os arrays dos parâmetros $files e $contents possuem a mesma quantidade de valores.
-        if($countContents != $countFiles){
+        if($countContents != $countFiles) {
             return '<p> Número de arrays: files e contents não são iguais.</p>';
         }
 
@@ -242,16 +242,16 @@ class Files
      * @param $file
      * @return void
      */
-    public function FileRead($file){
+    public function FileRead($file) {
 
-        if(!file_exists($file)){
+        if(!file_exists($file)) {
             return false;
         }
 
         $fopen = fopen($file, 'r');
 
         //Apresenta em tela o conteúdo do arquivo.
-        while($showData = fgets($fopen)){
+        while($showData = fgets($fopen)) {
             echo "{$showData}<br>";
         }
 
@@ -264,7 +264,7 @@ class Files
      * @param $text
      * @return bool
      */
-    public function FileWrite($file, $text){
+    public function FileWrite($file, $text) {
 
         $this->mountFileRewrite($dir,$file, $text);
         return true;
@@ -276,7 +276,7 @@ class Files
      * @param $text
      * @return void
      */
-    public function FileReadWrite($file, $text){
+    public function FileReadWrite($file, $text) {
 
         $this->mountFileReadWrite($dir,$file, $text);
         $this->mountFileReadData($dir,$file, $text);
@@ -288,7 +288,7 @@ class Files
      * @param $dir
      * @return bool
      */
-    public function RemoveDir ($dir){
+    public function RemoveDir ($dir) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
@@ -297,14 +297,14 @@ class Files
         $files = array_diff(scandir($dirVerify), array('.', '..'));
 
         //Verifica se diretório informado existe e se é um diretório.
-        if(is_dir($dirVerify) && file_exists($dirVerify)){
+        if(is_dir($dirVerify) && file_exists($dirVerify)) {
 
             //Desmembra os arquivos para ser processado individualmente
-            foreach($files as $file){
+            foreach($files as $file) {
                 //Se não existe nenhum arquivo, deleta a pasta
-                if(is_dir($dirVerify."/".$file)){
+                if(is_dir($dirVerify."/".$file)) {
                     delTree($dirVerify."/".$file);
-                }else{
+                } else {
                     //Se existir arquivo na pasta, faça a exclusão do mesmo, até limpar a pasta.
                     unlink($dirVerify."/".$file);
                 }
@@ -323,12 +323,12 @@ class Files
      * @param $dir
      * @return bool
      */
-    public function RemoveFile ($dir){
+    public function RemoveFile ($dir) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
 
-        if(file_exists($dirVerify)){
+        if(file_exists($dirVerify)) {
             unlink($dirVerify);
             return true;
         }else{
@@ -342,25 +342,25 @@ class Files
      * @param array $files
      * @return bool
      */
-    public function RemoveMultipleFiles ($dir, array $files){
+    public function RemoveMultipleFiles ($dir, array $files) {
 
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
 
         //Verifica se diretório informado existe.
-        if(is_dir($dirVerify) && file_exists($dirVerify)){
+        if(is_dir($dirVerify) && file_exists($dirVerify)) {
 
             //Processa cada um dos arquivos mencionados no parâmetro $files
-            for($a = 0; $a < count($files); $a++){
+            for($a = 0; $a < count($files); $a++) {
 
                 //Se existir o diretório, mas não existir o arquivo, retorna false.
-                if(is_dir($dirVerify."/".$files[$a]) && !file_exists($dirVerify."/".$files[$a])){
+                if(is_dir($dirVerify."/".$files[$a]) && !file_exists($dirVerify."/".$files[$a])) {
                     return false;
-                }else{
+                } else {
                     //Verifica se o arquivo existe, se sim, faz a exclusão.
-                    if(file_exists($dirVerify."/".$files[$a])){
-                       unlink($dirVerify."/".$files[$a]);
-                    }else{
+                    if(file_exists($dirVerify."/".$files[$a])) {
+                        unlink($dirVerify."/".$files[$a]);
+                    } else {
                         echo "Esse Arquivo Não Existe: {$files[$a]}<br>";
 
                     }
@@ -377,13 +377,13 @@ class Files
      * @param $DirDest
      * @return bool
      */
-    public function MoveFile(array $file, $DirOrigin, $DirDest){
+    public function MoveFile(array $file, $DirOrigin, $DirDest) {
 
         //Verifica se diretório e o arquivo informado existem.
-        if(is_dir($DirOrigin) && file_exists($DirOrigin)){
+        if(is_dir($DirOrigin) && file_exists($DirOrigin)) {
 
             //Desmembra os arquivos que devem ser movidos de pastas
-            for($a = 0; $a < count($file); $a++){
+            for($a = 0; $a < count($file); $a++) {
 
                 //Atribui-lhes o caminho de origem e de destino.
                 $Origin = "{$DirOrigin}/{$file[$a]}";
@@ -393,13 +393,13 @@ class Files
                 if(file_exists($Origin)) {
                     copy($Origin, $Dest);
                     unlink($Origin);
-                }else{
+                } else {
                     echo "Estes arquivos não existem na pasta de origem: {$file[$a]}<br>";
                 }
             }
             return true;
 
-        }else{
+        } else {
             return false;
         }
     }
@@ -410,16 +410,16 @@ class Files
      * @param $rename
      * @return bool
      */
-    public function RenameDir($dir, $rename){
+    public function RenameDir($dir, $rename) {
 
         //Verifica se o diretório e a pasta existe
-        if(is_dir($dir) && file_exists($dir)){
+        if(is_dir($dir) && file_exists($dir)) {
 
             //Renomeia o diretório (nome atual: $dir) para o (novo nome: $rename).
             rename ($dir, $rename);
             return true;
 
-        }else{
+        } else {
             return false;
         }
     }
@@ -430,16 +430,16 @@ class Files
      * @param $rename
      * @return bool
      */
-    public function RenameFile($file, $rename){
+    public function RenameFile($file, $rename) {
 
         //Verifica se o diretório e a pasta existe
-        if(file_exists($file)){
+        if(file_exists($file)) {
 
             //Renomeia o arquivo (nome atual: $file) para o (novo nome: $rename).
             rename ($file, $rename);
             return true;
 
-        }else{
+        } else {
             return false;
         }
     }
@@ -449,28 +449,28 @@ class Files
      * @param $dir
      * @return void
      */
-    public function ListDir($dir){
+    public function ListDir($dir) {
 
         $return = $this->ListFolders($dir);
         $folder = $return['folders'];
         $calc   = $return['calc'];
 
         //Desmembra as pastas do diretório
-        for($a = 0; $a < $calc; $a++){
+        for($a = 0; $a < $calc; $a++) {
             echo $return['mount'][$a];
         }
 
         $this->ListFiles($dir);
 
         //Mostra as subpastas e seus arquivos
-        for($i = 0; $i < $calc; $i++){
+        for($i = 0; $i < $calc; $i++) {
             foreach (glob("{$folder[$i]}/*.*") as $arquivo) {
 
                 //Faço o desmembramento dos valores através do explode
                 $explode = explode('/', $arquivo);
 
                 //Separo e capturo somente os valores que forem válidos e pertencentes a pasta/subpasta/arquivos
-                if($arquivo == $explode[0].'/'.$explode[1].'/'.$explode[2]){
+                if($arquivo == $explode[0].'/'.$explode[1].'/'.$explode[2]) {
 
                     //Monto a apresentação.
                     $mount = $explode[0].'/'.$explode[1].'/'.$explode[2];

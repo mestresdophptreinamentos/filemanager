@@ -66,9 +66,9 @@ class Upload {
         $upload = $_FILES[$input_name];
         $fileName = $upload['name'];
         $fileSize = $upload['size'];
-        $fileTtpe = $upload['type'];
+        /*$fileType = $upload['type'];
         $fileTemp = $upload['tmp_name'];
-        $fileError = $upload['error'];
+        $fileError = $upload['error'];*/
         $fileExt =  mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         //Verifica se o tamanho do arquivo não ultrapassa 5Mb
@@ -103,7 +103,7 @@ class Upload {
     private function VerifyMultiple(bool $par = false, $count = '', $dir) {
         date_default_timezone_set("America/Sao_paulo");
 
-        if ($par == true){
+        if ($par){
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES['attach'];
                 $fileName[$i] = $upload['name'][$i];
@@ -190,7 +190,7 @@ class Upload {
             $count = count($upload['name']);
         }
 
-        $folderDir = $this->Folder($dir);
+        $this->Folder($dir);
         $upload = $this->VerifyMultiple(true, $count, $dir);
 
         return $upload;

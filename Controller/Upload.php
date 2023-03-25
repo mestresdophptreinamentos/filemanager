@@ -17,7 +17,7 @@ namespace Controller;
  *  Homepage: www.mestresdophp.com.br
  * */
 
-include_once 'Files.php';
+use Controller\Files;
 
 class Upload {
 

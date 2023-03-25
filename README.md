@@ -10,11 +10,15 @@ FileManager está disponível via composer:
 
 FileManager is available via Composer:
 
-`"mestresdophp/filemanager": "1.0.*"`
+`
+"mestresdophp/filemanager": "1.0.*"
+`
 
 or run
 
-`composer require mestresdophp/filemanager`
+`
+composer require mestresdophp/filemanager
+`
 
 
 ## **Documentação (Documentation)**
@@ -27,8 +31,11 @@ Exemplo 1: Chamada de Método de Criação de Arquivo:
 
 Example 1: File Creation Method Call:
 
-`$Files = new Controller\Files();
-$Files->CreateFile("Documents/Reads/", "read1.txt", "teste3");`
+`
+$Files = new Controller\Files();
+
+$Files->CreateFile("Documents/Reads/", "read1.txt", "teste3");
+`
 
 Parametros ("Caminho para a pasta", "Nome do Arquivo", "Conteúdo que será escrito no arquivo");
 

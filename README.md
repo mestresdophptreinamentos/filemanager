@@ -31,11 +31,11 @@ Exemplo 1: Chamada de Método de Criação de Arquivo:
 
 Example 1: File Creation Method Call:
 
-`
+```
 $Files = new Controller\Files();
 
 $Files->CreateFile("Documents/Reads/", "read1.txt", "teste3");
-`
+```
 
 Parametros ("Caminho para a pasta", "Nome do Arquivo", "Conteúdo que será escrito no arquivo");
 
@@ -45,8 +45,9 @@ Exemplo 2: Chamada de Método de Upload de Único Arquivo:
 
 Example 2: Single File Upload Method Call:
 
-`$Upload = new Controller\Upload();
- $Upload->UploadFile('Uploads', 'attach');`
+```$Upload = new Controller\Upload();
+
+ $Upload->UploadFile('Uploads', 'attach');```
  
  Parametros: ('Nome da Pasta ', 'o atributo Name do input files');
  
@@ -56,11 +57,13 @@ Example 2: Single File Upload Method Call:
  
  Note: It is important to place the Upload call within the statement below to prevent the method from being executed without submitting the form:
  
- `if(isset($_POST['send'])) {
+ ```
+ if(isset($_POST['send'])) {
  
     $Upload->UploadFile('Uploads', 'attach');
     
- }`
+ }
+```
 
 
 ## **Suporte (Support)**
@@ -72,9 +75,9 @@ If you find any security problem, error, bug or anything else that compromises t
 
 ## **Créditos (Credits)**
 
-Jeferson Souza (Developer)
+**Jeferson Souza** (Developer)
 
-Mestres do PHP Treinamentos (Team)
+**Mestres do PHP** Treinamentos (Team)
 
 
 ## **Licença (License)**

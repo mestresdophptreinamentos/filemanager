@@ -80,6 +80,6 @@ If you find any security problem, error, bug or anything else that compromises t
 
 ## **Licença (License)**
 
-The MIT License (MIT). Para maiores informações acesse arquivo de licença: **[clique aqui]**(https://github.com/mestresdophptreinamentos/filemanager/blob/main/LICENSE)
+The MIT License (MIT). Para maiores informações acesse arquivo de licença: **[clique aqui](https://github.com/mestresdophptreinamentos/filemanager/blob/main/LICENSE)**
 
-The MIT License (MIT). For more information access license file: **[click here]**(https://github.com/mestresdophptreinamentos/filemanager/blob/main/LICENSE)
+The MIT License (MIT). For more information access license file: **[click here](https://github.com/mestresdophptreinamentos/filemanager/blob/main/LICENSE)**

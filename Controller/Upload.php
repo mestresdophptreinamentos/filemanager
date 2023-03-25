@@ -21,12 +21,7 @@ use Controller\Files;
 
 class Upload {
 
-    public $response;
-    public $fileName;
-    public $fileExt;
-    public $fileSize;
-
-    /**
+     /**
      * Método público responsável por gerenciar a criação de pastas.
      * @param $dir
      * @return string
@@ -106,8 +101,16 @@ class Upload {
      */
     private function VerifyMultiple(bool $par = false, $count = '', $dir) {
         date_default_timezone_set("America/Sao_paulo");
-
+        
         if ($par) {
+            $fileName[0] = '';
+            $fileSize[0] = '';
+            $fileType[0] = '';
+            $fileTemp[0] = '';
+            $fileError[0] = '';
+            $fileExt[0] = '';
+            $destination[0] = '';
+            
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES['attach'];
                 $fileName[$i] = $upload['name'][$i];

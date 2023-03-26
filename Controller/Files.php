@@ -31,7 +31,10 @@ class Files
      */
     private function mountFileWrite($dir, $file, $text) {
         $Upload = new Upload();
-        $folder = $Upload ->Folder($dir);
+
+        if(is_dir($dir)) {
+            $folder = $Upload->Folder($dir);
+        }
 
         //Se o arquivo não existir, cria o mesmo.
         $fopen = fopen($folder . $file, 'w');
@@ -46,12 +49,12 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileReadWrite($dir, $file, $text) {
-        $Upload = new Upload();
-        $Upload ->Folder($dir);
+    private function mountFileReadWrite($dir, $text) {
+        //$Upload = new Upload();
+        //$Upload ->Folder($dir);
 
         //Se o arquivo não existir, cria o mesmo.
-        $fopen = fopen($file, 'a+');
+        $fopen = fopen($dir, 'a+');
         fwrite($fopen, PHP_EOL . $text . PHP_EOL);
         fclose($fopen);
     }
@@ -64,8 +67,6 @@ class Files
      * @return void
      */
     private function mountFileRewrite($file, $text, $dir = '') {
-        $Upload = new Upload();
-        $Upload ->Folder($dir);
 
         //Se o arquivo não existir, cria o mesmo.
         $fopen = fopen($file, 'w');
@@ -80,11 +81,11 @@ class Files
      * @return void
      */
     private function mountFileReadData($dir, $file) {
-        $Upload = new Upload();
-        $Upload ->Folder($dir);
+        //$Upload = new Upload();
+        //$Upload ->Folder($dir);
 
         //Após escrever, abre o arquivo para leitura
-        $fread = fopen($file, 'r');
+        $fread = fopen($dir, 'r');
 
         //Apresenta em tela o conteúdo do arquivo.
         while ($showData = fgets($fread)) {
@@ -268,8 +269,8 @@ class Files
      */
     public function FileWrite($file, $text) {
 
-        $this->mountFileRewrite($file, $text);
-        return true;
+        $return = $this->mountFileRewrite($file, $text);
+        return $return;
     }
 
     /**
@@ -279,9 +280,9 @@ class Files
      * @param $text
      * @return void
      */
-    public function FileReadWrite($dir, $file, $text) {
+    public function FileReadWrite($dir, $text) {
 
-        $this->mountFileReadWrite($dir, $file, $text);
+        $this->mountFileReadWrite($dir, $text);
         $this->mountFileReadData($dir, $file);
 
     }

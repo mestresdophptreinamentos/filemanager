@@ -21,7 +21,7 @@ use Controller\Files;
 
 class Upload {
 
-    public $count;
+    public $counter;
 
      /**
      * Método público responsável por gerenciar a criação de pastas.
@@ -204,11 +204,11 @@ class Upload {
         $upload = $_FILES[$input_name];
 
         if ($upload != '') {
-            $count = count($upload['name']);
+            $counter = count($upload['name']);
         }
 
         $this->Folder($dir, $newFolder);
-        $upload = $this->VerifyMultiple(true, $count, $dir);
+        $upload = $this->VerifyMultiple(true, $counter, $dir);
 
         return $upload;
     }

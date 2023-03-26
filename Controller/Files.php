@@ -45,8 +45,11 @@ class Files
      * @return void
      */
     private function mountFileReadWrite($dir, $text, $newFolder = false) {
-        $Upload = new Upload();
-        $Upload ->Folder($dir);
+        
+        if ($newFolder == true) {
+            $Upload = new Upload();
+            $Upload ->Folder($dir);
+        }
 
         //Se o arquivo não existir, cria o mesmo.
         $fopen = fopen($dir, 'a+');
@@ -77,8 +80,10 @@ class Files
      * @return void
      */
     private function mountFileReadData($dir, $newFolder = false) {
-        $Upload = new Upload();
-        $Upload ->Folder($dir);
+        if ($newFolder == true) {
+            $Upload = new Upload();
+            $Upload ->Folder($dir);
+        }
 
         //Após escrever, abre o arquivo para leitura
         $fread = fopen($dir, 'r');
@@ -101,8 +106,10 @@ class Files
      * @return false|void
      */
     private function FileMultiple($folder, $dir, $files, $count, $contents, $newFolder = false) {
-        $Upload = new Upload();
-        $Upload ->Folder($folder);
+        if ($newFolder == true) {
+            $Upload = new Upload();
+            $Upload ->Folder($dir);
+        }
 
         //Verifica se os arquivos já existem, se sim, retorna false.
         foreach ($files as $file) {

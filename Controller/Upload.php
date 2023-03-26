@@ -203,9 +203,7 @@ class Upload {
 
         $upload = $_FILES[$input_name];
 
-        if ($upload != '') {
-            $counter = count($upload['name']);
-        }
+        $counter = count($upload['name']);
 
         $this->Folder($dir, $newFolder);
         $upload = $this->VerifyMultiple(true, $counter, $dir);

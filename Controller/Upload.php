@@ -174,18 +174,17 @@ class Upload {
      */
     public function UploadFile($dir, $input_name, $newFolder = false) {
         ini_get('post_max_size');
-
-        $folderDir = $dir . '/';
-
+        
         //Se a pasta não existir
         if ($newFolder === true || !is_dir($dir)) {
-            $dir = $this->Folder($dir, $newFolder);
+            $dir = $this->Folder($dir);
         } else {
             $dir = $dir . '/';
         }
         
         $upload = $this->VerifySimple($dir, $input_name);
-        return['name' => $fileName, 'encrypt' => $newFileName, "destination" => $destination];
+
+        return $upload;
 
     }
 
@@ -206,7 +205,7 @@ class Upload {
 
         //Se a pasta não existir
         if ($newFolder === true || !is_dir($dir)) {
-            $dir = $this->Folder($dir, $newFolder);
+            $dir = $this->Folder($dir);
         } else {
             $dir = $dir . '/';
         }

@@ -105,12 +105,8 @@ class Files
      * @param $contents
      * @return false|void
      */
-    private function FileMultiple($dir, $files, $count, $contents, $newFolder = false) {
-        if ($newFolder == true) {
-            $Upload = new Upload();
-            $Upload ->Folder($dir);
-        }
-
+    private function FileMultiple($dir, $files, $count, $contents) {
+       
         //Verifica se os arquivos já existem, se sim, retorna false.
         foreach ($files as $file) {
             if (file_exists($dir . '/' . $file)) {
@@ -226,6 +222,7 @@ class Files
      * @param $dir
      * @param array $files
      * @param array $contents
+     * @param $newFolder
      * @return bool|string
      */
     public function CreateFileMultiple($folder, $dir, array $files, array $contents, $newFolder = false) {
@@ -238,8 +235,13 @@ class Files
         if ($countContents != $countFiles) {
             return '<p> Número de arrays: files e contents não são iguais.</p>';
         }
+        
+        if ($newFolder == true) {
+            $Upload = new Upload();
+            $Upload ->Folder($dir);
+        }
 
-        $this->FileMultiple($folder, $dir, $files, $countFiles, $contents, $newFolder);
+        $this->FileMultiple($folder, $dir, $files, $countFiles, $contents);
         return true;
     }
 

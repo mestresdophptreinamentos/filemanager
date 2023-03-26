@@ -21,7 +21,9 @@ use Controller\Upload;
 
 class Files
 {
-
+    
+    public $folder;
+    
     /**
      * Método privado responsável por gerenciar escrita de um arquivo específico.
      * @param $dir

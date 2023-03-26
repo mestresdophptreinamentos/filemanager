@@ -7,10 +7,10 @@
         -moz-border-radius: 5px; background-color: #dedede; width: 79%; margin-top: 10px}
 </style>
 <form method="post" enctype="multipart/form-data">
-   <input type="file" name="attach[]">
+    <input type="file" name="attach[]">
     <input type="file" name="attach[]">
     <input type="file" name="attach[]">
     <input type="file" name="attach[]">
     <!-- <input type="file" name="attach">-->
-   <button name="send"> Anexar</button>
+    <button name="send"> Anexar</button>
 </form>

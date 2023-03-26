@@ -108,6 +108,8 @@ class Upload {
 
         if ($par) {
             $explode = '';
+            $response = '';
+            
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES[$input_name];
                 $fileName = $upload['name'][$i];

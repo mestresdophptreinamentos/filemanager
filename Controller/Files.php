@@ -61,12 +61,11 @@ class Files
 
     /**
      * Método privado responsável por gerenciar sobreescrita do texto de um arquivo específico.
-     * @param $dir
      * @param $file
      * @param $text
      * @return void
      */
-    private function mountFileRewrite($file, $text, $dir = '') {
+    private function mountFileRewrite($file, $text) {
 
         //Se o arquivo não existir, cria o mesmo.
         $fopen = fopen($file, 'w');
@@ -80,7 +79,7 @@ class Files
      * @param $file
      * @return void
      */
-    private function mountFileReadData($dir, $file) {
+    private function mountFileReadData($dir) {
         //$Upload = new Upload();
         //$Upload ->Folder($dir);
 
@@ -283,7 +282,7 @@ class Files
     public function FileReadWrite($dir, $text) {
 
         $this->mountFileReadWrite($dir, $text);
-        $this->mountFileReadData($dir, $file);
+        $this->mountFileReadData($dir);
 
     }
 

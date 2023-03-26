@@ -105,11 +105,13 @@ class Upload {
         if ($par) {
             $fileName = '';
             $fileSize = '';
-            $fileType = '';
+            //$fileType = '';
             $fileTemp = '';
-            $fileError = '';
+            //$fileError = '';
             $fileExt = '';
             $destination = '';
+            $newFileName = '';
+            $response = '';
 
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES['attach'];

@@ -172,7 +172,7 @@ class Upload {
         $fileTemp = $upload['tmp_name'];
         $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-        $newFileName = md5($fileName) .time(). '.' .$fileExt;
+        $newFileName = md5($fileName) . time() . '.' . $fileExt;
         $destination = $folderDir . $newFileName;
 
         move_uploaded_file($fileTemp, $destination);

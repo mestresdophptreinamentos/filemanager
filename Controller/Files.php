@@ -32,7 +32,7 @@ class Files
     private function mountFileWrite($dir, $file, $text) {
         $Upload = new Upload();
 
-        if(is_dir($dir)) {
+        if (is_dir($dir)) {
             $folder = $Upload->Folder($dir);
         }
 

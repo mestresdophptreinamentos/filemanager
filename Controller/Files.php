@@ -95,33 +95,7 @@ class Files
 
         fclose($fread);
     }
-
-    /**
-     * Método privado responsável por gerenciar criação de múltiplos arquivos.
-     * @param $folder
-     * @param $dir
-     * @param $files
-     * @param $count
-     * @param $contents
-     * @return false|void
-     */
-    private function FileMultiple($dir, $files, $count, $contents) {
-       
-        //Verifica se os arquivos já existem, se sim, retorna false.
-        foreach ($files as $file) {
-            if (file_exists($dir . '/' . $file)) {
-                return false;
-            }
-        }
-
-        //Cria através do for os arquivos na pasta indicada
-        for ($i = 0; $i < $count; $i++) {
-            $fopen = fopen($dir . '/' . $files[$i], 'w');
-            fwrite($fopen, $contents[$i]);
-            fclose($fopen);
-        }
-    }
-
+ 
     /**
      * Método privado responsável por gerenciar a montagem das pastas do diretório
      * @param $dir
@@ -241,7 +215,19 @@ class Files
             $Upload ->Folder($dir);
         }
 
-        $this->FileMultiple($folder, $dir, $files, $countFiles, $contents);
+        //Verifica se os arquivos já existem, se sim, retorna false.
+        foreach ($files as $file) {
+            if (file_exists($dir . '/' . $file)) {
+                return false;
+            }
+        }
+
+        //Cria através do for os arquivos na pasta indicada
+        for ($i = 0; $i < $count; $i++) {
+            $fopen = fopen($dir . '/' . $files[$i], 'w');
+            fwrite($fopen, $contents[$i]);
+            fclose($fopen);
+        }
         return true;
     }
 

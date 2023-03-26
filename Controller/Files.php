@@ -32,14 +32,7 @@ class Files
      * @return void
      */
     private function mountFileWrite($dir, $file, $text, $newFolder = false) {
-        $Upload = new Upload();
-
-        if (is_dir($dir)) {
-            $folder = $Upload->Folder($dir, $newFolder);
-        }
-
-        //Se o arquivo não existir, cria o mesmo.
-        $fopen = fopen($folder . $file, 'w');
+        $fopen = fopen($dir . $file, 'w');
         fwrite($fopen, $text);
         fclose($fopen);
     }

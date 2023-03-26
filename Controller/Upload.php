@@ -23,11 +23,11 @@ class Upload {
 
     public $counter;
 
-         /**
-         * Método público responsável por gerenciar a criação de pastas.
-         * @param $dir
-         * @return string
-         */
+     /**
+     * Método público responsável por gerenciar a criação de pastas.
+     * @param $dir
+     * @return string
+     */
     public function Folder($dir) {
 
         date_default_timezone_set("America/Sao_paulo");
@@ -168,11 +168,11 @@ class Upload {
     /**
      * Método público responsável por realizar o upload de um único arquivo para seu projeto
      * @param $dir
-     * @param $input_name
+     * @param string $input_name
      * @param $newFolder
      * @return array|mixed|string
      */
-    public function UploadFile($dir, $input_name, $newFolder = false) {
+    public function UploadFile($dir, string $input_name, $newFolder = false) {
         ini_get('post_max_size');
         
         //Se a pasta não existir

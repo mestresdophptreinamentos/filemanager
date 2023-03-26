@@ -31,7 +31,7 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileWrite($dir, $file, $text, $newFolder = false) {
+    private function mountFileWrite($dir, $file, $text) {
         $fopen = fopen($dir . $file, 'w');
         fwrite($fopen, $text);
         fclose($fopen);

@@ -101,61 +101,68 @@ class Upload {
      * @param $count
      * @param $dir
      * @param $input_name
-     * @return string|void
+     * @return array|string|void
      */
     private function VerifyMultiple(bool $par = false, $count = '', $dir, $input_name) {
         date_default_timezone_set("America/Sao_paulo");
-        
+
         if ($par) {
-            $fileName[0] = '';
-            $fileSize[0] = '';
-            //$fileType[0] = '';
-            $fileTemp[0] = '';
-            //$fileError[0] = '';
-            $fileExt[0] = '';
-            $destination[0] = '';
-            $newFileName[0] = '';
-            $response[0] = '';
+            $fileName = '';
+            $fileSize = '';
+            //$fileType = '';
+            $fileTemp = '';
+            //$fileError = '';
+            $fileExt = '';
+            $destination = '';
+            $newFileName = '';
+            $response = '';
 
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES[$input_name];
-                $fileName[$i] = $upload['name'][$i];
-                $fileSize[$i] = $upload['size'][$i];
-                //$fileType[$i] = $upload['type'][$i];
-                $fileTemp[$i] = $upload['tmp_name'][$i];
+                $fileName = $upload['name'][$i];
+                $fileSize = $upload['size'][$i];
+                $fileType = $upload['type'][$i];
+                $fileTemp = $upload['tmp_name'][$i];
                 //$fileError[$i] = $upload['error'][$i];
-                $fileExt[$i] = mb_strtolower(pathinfo($fileName[$i], PATHINFO_EXTENSION));
+                //$fileExt[$i] = mb_strtolower(pathinfo($fileName[$i], PATHINFO_EXTENSION));
+                $separator = explode('.', $fileName);
+                $fileExt = $separator[1];
+
 
                 //Verifica se o tamanho do arquivo não ultrapassa 5Mb
-                if ($fileSize[$i] > 5242880) {
-                    $response = "Arquivo {$fileName[$i]} é maior que 5Mb  não é permitido.";
+                if ($fileSize > 5242880) {
+                    $response = "Arquivo {$fileName} é maior que 5Mb  não é permitido.";
                     return $response;
                 }
 
-                //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, imagem, vídeo ou áudio.
-                if ($fileExt[$i] == 'php' || $fileExt[$i] == 'js' || $fileExt[$i] == 'css' || $fileExt[$i] == 'jsp' || $fileExt[$i] == 'asp'
-                    || $fileExt[$i] == 'net' || $fileExt[$i] == 'exe' || $fileExt[$i] == 'bat' || $fileExt[$i] == 'msi' || $fileExt[$i] == 'cmd'
-                    || $fileExt[$i] == 'shell' || $fileExt[$i] == 'ini' || $fileExt[$i] == 'py' || $fileExt[$i] == 'sql' || $fileExt[$i] == 'oft'
-                    || $fileExt[$i] == 'eml' || $fileExt[$i] == 'tiff' || $fileExt[$i] == 'tif' || $fileExt[$i] == 'gif' || $fileExt[$i] == 'html'
-                    || $fileExt[$i] == 'htm' || $fileExt[$i] == 'xhtml' || $fileExt[$i] == 'src' || $fileExt[$i] == 'tmp' || $fileExt[$i] == 'cab'
-                    || $fileExt[$i] == 'dll' || $fileExt[$i] == 'sys' || $fileExt[$i] == 'ai' || $fileExt[$i] == 'psd' || $fileExt[$i] == 'crd'
-                    || $fileExt[$i] == 'raw' || $fileExt[$i] == 'jfif' || $fileExt[$i] == 'exif' || $fileExt[$i] == 'eps' || $fileExt[$i] == 'mkv') {
+                //Extensões permitidas
+                $Extension = ['image/png', 'image/jpeg', 'application/pdf', 'application/octet-stream', 'application/x-zip-compressed',
+                   'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                   'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
-                    $response = "{$fileName[$i]} - Este tipo de arquivo não é permitido.";
-                    return $response;
+                //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, png, jpg, jpeg, rar e zip.
+                $verify = '';
+                if(!in_array($fileType, $Extension)) {
+                    $verify = "{$fileName} - Este tipo de arquivo não é permitido.";
+                    echo $verify;
                 }
 
-                $newFileName[$i] = md5($fileName[$i]) . time() . '.' . $fileExt[$i];
+                $newFileName = md5($fileName) . time() . '.' . $fileExt;
+                $destination = $dir . $newFileName;
 
-                $destination[$i] = $dir . $newFileName[$i];
+                if (!empty($fileName) && !$verify) {
+                    move_uploaded_file($fileTemp, $destination);
 
-                if (!empty($fileName[$i])) {
-                    move_uploaded_file($fileTemp[$i], $destination[$i]);
-
-                    $response[] = ['count' => $count, 'name' => $fileName[$i], 'encrypt' => $newFileName[$i], "destination" => $destination[$i]];
+                    $response = "count => {$count}, name => {$fileName}, encrypt => {$newFileName}, destination => {$destination}";
                 }
+
+                $explode[] = explode(", ", $response);
             }
-            return $response;
+
+            return $explode;
+
+
         }
     }
 
@@ -196,6 +203,7 @@ class Upload {
      * Método público responsável por realizar o upload de vários arquivos para seu projeto
      * @param $dir
      * @param $input_name
+     * @param $newFolder
      * @return array|string|void
      */
     public function UploadMultiplesFiles($dir, $input_name, $newFolder = false) {
@@ -203,9 +211,9 @@ class Upload {
 
         $upload = $_FILES[$input_name];
 
-        $counter = count($upload['name']);
+        $count = count($upload['name']);
 
-       //Se a pasta não existir
+        //Se a pasta não existir
         if($newFolder === true || !is_dir($dir)) {
             $dir = $this->Folder($dir, $newFolder);
         } else {

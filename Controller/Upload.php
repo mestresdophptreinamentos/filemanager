@@ -107,16 +107,7 @@ class Upload {
         date_default_timezone_set("America/Sao_paulo");
 
         if ($par) {
-            $fileName = '';
-            $fileSize = '';
-            //$fileType = '';
-            $fileTemp = '';
-            //$fileError = '';
-            $fileExt = '';
-            $destination = '';
-            $newFileName = '';
-            $response = '';
-
+            $explode = '';
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES[$input_name];
                 $fileName = $upload['name'][$i];
@@ -180,7 +171,7 @@ class Upload {
 
         //Se a pasta não existir
         if($newFolder == true || !is_dir($folderDir)){
-            $folderDir = $this->Folder($dir, $newFolder);
+            $folderDir = $this->Folder($dir);
         }
         
         $upload = $this->VerifySimple($input_name);

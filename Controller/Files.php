@@ -65,7 +65,7 @@ class Files
      * Método privado responsável por gerenciar sobreescrita do texto de um arquivo específico.
      * @param $file
      * @param $text
-     * @return void
+     * @return false|resource
      */
     private function mountFileRewrite($file, $text) {
 
@@ -265,15 +265,15 @@ class Files
     }
 
 
-    /**
+    **
      * Método público responsável pela sobrescrita de novo conteúdo em um arquivo já existente.
      * @param $file
      * @param $text
-     * @return void
+     * @return false|resource
      */
-    public function FileWrite($file, $text, $newFolder = false) {
+    public function FileWrite($file, $text) {
 
-        $return = $this->mountFileRewrite($file, $text, $newFolder);
+        $return = $this->mountFileRewrite($file, $text);
         return $return;
     }
 

@@ -23,11 +23,11 @@ class Upload {
 
     public $counter;
 
-     /**
-     * Método público responsável por gerenciar a criação de pastas.
-     * @param $dir
-     * @return string
-     */
+      /**
+      * Método público responsável por gerenciar a criação de pastas.
+      * @param $dir
+      * @return string
+      */
     public function Folder($dir) {
 
         date_default_timezone_set("America/Sao_paulo");
@@ -172,7 +172,7 @@ class Upload {
         $folderDir = $dir . '/';
 
         //Se a pasta não existir
-        if ($newFolder == true || !is_dir($folderDir)){
+        if ($newFolder == true || !is_dir($folderDir)) {
             $folderDir = $this->Folder($dir);
         }
         

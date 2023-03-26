@@ -7,7 +7,7 @@ namespace Controller;
  *  Author: Jeferson Souza
  *  Company: Mestres do PHP Treinamentos
  *  Date: 19/03/2023 às 17:37
- *  Update: 25/03/2023 às 19:44
+ *  Update: 26/03/2023 às 21:44
  *
  *  IDE: PHP STORM
  *  Version: 1.0
@@ -23,11 +23,11 @@ class Upload {
 
     public $counter;
 
-      /**
-      * Método público responsável por gerenciar a criação de pastas.
-      * @param $dir
-      * @return string
-      */
+         /**
+         * Método público responsável por gerenciar a criação de pastas.
+         * @param $dir
+         * @return string
+         */
     public function Folder($dir) {
 
         date_default_timezone_set("America/Sao_paulo");

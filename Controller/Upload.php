@@ -182,10 +182,8 @@ class Upload {
             $dir = $dir . '/';
         }
         
-        $upload = $this->VerifySimple($dir, $input_name);
-
-        return $upload;
-
+        return $this->VerifySimple($dir, $input_name);
+        
     }
 
 

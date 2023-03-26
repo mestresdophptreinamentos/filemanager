@@ -21,11 +21,11 @@ use Controller\Files;
 
 class Upload {
 
-          /**
-          * Método público responsável por gerenciar a criação de pastas.
-          * @param $dir
-          * @return string
-          */
+     /**
+     * Método público responsável por gerenciar a criação de pastas.
+     * @param $dir
+     * @return string
+     */
     public function Folder($dir) {
 
         date_default_timezone_set("America/Sao_paulo");

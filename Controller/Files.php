@@ -21,9 +21,9 @@ use Controller\Upload;
 
 class Files
 {
-    
+
     public $folder;
-    
+
     /**
      * Método privado responsável por gerenciar escrita de um arquivo específico.
      * @param $dir
@@ -73,6 +73,8 @@ class Files
         $fopen = fopen($file, 'w');
         fwrite($fopen, PHP_EOL . $text . PHP_EOL);
         fclose($fopen);
+
+        return $fopen;
     }
 
     /**

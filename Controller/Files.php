@@ -31,11 +31,11 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileWrite($dir, $file, $text) {
+    private function mountFileWrite($dir, $file, $text, $newFolder = false) {
         $Upload = new Upload();
 
         if (is_dir($dir)) {
-            $folder = $Upload->Folder($dir);
+            $folder = $Upload->Folder($dir, $newFolder);
         }
 
         //Se o arquivo não existir, cria o mesmo.
@@ -51,9 +51,9 @@ class Files
      * @param $text
      * @return void
      */
-    private function mountFileReadWrite($dir, $text) {
-        //$Upload = new Upload();
-        //$Upload ->Folder($dir);
+    private function mountFileReadWrite($dir, $text, $newFolder = false) {
+        $Upload = new Upload();
+        $Upload ->Folder($dir, $newFolder);
 
         //Se o arquivo não existir, cria o mesmo.
         $fopen = fopen($dir, 'a+');
@@ -83,9 +83,9 @@ class Files
      * @param $file
      * @return void
      */
-    private function mountFileReadData($dir) {
-        //$Upload = new Upload();
-        //$Upload ->Folder($dir);
+    private function mountFileReadData($dir, $newFolder = false) {
+        $Upload = new Upload();
+        $Upload ->Folder($dir, $newFolder);
 
         //Após escrever, abre o arquivo para leitura
         $fread = fopen($dir, 'r');
@@ -107,9 +107,9 @@ class Files
      * @param $contents
      * @return false|void
      */
-    private function FileMultiple($folder, $dir, $files, $count, $contents) {
+    private function FileMultiple($folder, $dir, $files, $count, $contents, $newFolder = false) {
         $Upload = new Upload();
-        $Upload ->Folder($folder);
+        $Upload ->Folder($folder, $newFolder);
 
         //Verifica se os arquivos já existem, se sim, retorna false.
         foreach ($files as $file) {
@@ -209,14 +209,14 @@ class Files
      * @param $text
      * @return bool
      */
-    public function CreateFile($dir, $file = "", $text = "") {
+    public function CreateFile($dir, $file = "", $text = "", $newFolder = false) {
 
         //Verifica se o arquivo existe
         if (file_exists($dir . '/' . $file)) {
             return false;
         }
 
-        $this->mountFileWrite($dir, $file, $text);
+        $this->mountFileWrite($dir, $file, $text, $newFolder);
         return true;
     }
 
@@ -227,7 +227,7 @@ class Files
      * @param array $contents
      * @return bool|string
      */
-    public function CreateFileMultiple($folder, $dir, array $files, array $contents) {
+    public function CreateFileMultiple($folder, $dir, array $files, array $contents, $newFolder = false) {
 
         //Faz a contagem dos arrays dos parâmetros enviados pela aplicação
         $countFiles = count($files);
@@ -238,7 +238,7 @@ class Files
             return '<p> Número de arrays: files e contents não são iguais.</p>';
         }
 
-        $this->FileMultiple($folder, $dir, $files, $countFiles, $contents);
+        $this->FileMultiple($folder, $dir, $files, $countFiles, $contents, $newFolder);
         return true;
     }
 
@@ -271,9 +271,9 @@ class Files
      * @param $text
      * @return void
      */
-    public function FileWrite($file, $text) {
+    public function FileWrite($file, $text, $newFolder = false) {
 
-        $return = $this->mountFileRewrite($file, $text);
+        $return = $this->mountFileRewrite($file, $text, $newFolder);
         return $return;
     }
 
@@ -284,10 +284,10 @@ class Files
      * @param $text
      * @return void
      */
-    public function FileReadWrite($dir, $text) {
+    public function FileReadWrite($dir, $text, $newFolder = false) {
 
-        $this->mountFileReadWrite($dir, $text);
-        $this->mountFileReadData($dir);
+        $this->mountFileReadWrite($dir, $text, $newFolder);
+        $this->mountFileReadData($dir, $newFolder);
 
     }
 

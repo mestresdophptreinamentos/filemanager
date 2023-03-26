@@ -28,10 +28,16 @@ class Upload {
      * @param $dir
      * @return string
      */
-    public function Folder($dir) {
+    public function Folder($dir, $verifyFolder = false) {
 
         date_default_timezone_set("America/Sao_paulo");
 
+        //Se não for preciso criar nenhuma pasta adicional, o código é interrompido
+        if($verifyFolder == false){
+            return 1;
+        }
+
+        //Se há necessidade de criar uma pasta então é executado o restante do código abaixo.
         $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/';
 
         if (!is_dir($folderDir) && !file_exists($folderDir)) {
@@ -70,7 +76,7 @@ class Upload {
         /*$fileType = $upload['type'];
         $fileTemp = $upload['tmp_name'];
         $fileError = $upload['error'];*/
-        $fileExt = mb_strtolower(pathinfo($fileName['extension']));
+        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         //Verifica se o tamanho do arquivo não ultrapassa 5Mb
         if ($fileSize > 5242880) {
@@ -122,7 +128,7 @@ class Upload {
                 //$fileType[$i] = $upload['type'][$i];
                 $fileTemp[$i] = $upload['tmp_name'][$i];
                 //$fileError[$i] = $upload['error'][$i];
-                $fileExt[$i]  = mb_strtolower(pathinfo($fileName[$i] ['extension']));
+                $fileExt[$i] = mb_strtolower(pathinfo($fileName[$i], PATHINFO_EXTENSION));
 
                 //Verifica se o tamanho do arquivo não ultrapassa 5Mb
                 if ($fileSize[$i] > 5242880) {
@@ -166,15 +172,15 @@ class Upload {
      * @param $input_name
      * @return array
      */
-    public function UploadFile($dir, $input_name) {
+    public function UploadFile($dir, $input_name, $newFolder = false) {
         ini_get('post_max_size');
 
-        $folderDir = $this->Folder($dir);
+        $folderDir = $this->Folder($dir, $newFolder);
         $upload = $this->VerifySimple($input_name);
 
         $fileName = $upload['name'];
         $fileTemp = $upload['tmp_name'];
-        $fileExt = mb_strtolower(pathinfo($fileName['extension']));
+        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         $newFileName = md5($fileName) . time() . '.' . $fileExt;
         $destination = $folderDir . $newFileName;
@@ -192,7 +198,7 @@ class Upload {
      * @param $input_name
      * @return array|string|void
      */
-    public function UploadMultiplesFiles($dir, $input_name) {
+    public function UploadMultiplesFiles($dir, $input_name, $newFolder = false) {
         ini_get('post_max_size');
 
         $upload = $_FILES[$input_name];
@@ -201,7 +207,7 @@ class Upload {
             $count = count($upload['name']);
         }
 
-        $this->Folder($dir);
+        $this->Folder($dir, $newFolder);
         $upload = $this->VerifyMultiple(true, $count, $dir);
 
         return $upload;

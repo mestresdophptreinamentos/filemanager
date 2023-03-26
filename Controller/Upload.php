@@ -68,10 +68,8 @@ class Upload {
         $upload = $_FILES[$input_name];
         $fileName = $upload['name'];
         $fileSize = $upload['size'];
-        /*$fileType = $upload['type'];
+        $fileType = $upload['type'];
         $fileTemp = $upload['tmp_name'];
-        $fileError = $upload['error'];*/
-        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         //Verifica se o tamanho do arquivo não ultrapassa 5Mb
         if ($fileSize > 5242880) {
@@ -79,20 +77,27 @@ class Upload {
             return $response;
         }
 
-        //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, imagem, vídeo ou áudio.
-        if ($fileExt == 'php' || $fileExt == 'js' || $fileExt == 'css' || $fileExt == 'jsp' || $fileExt == 'asp'
-            || $fileExt == 'net' || $fileExt == 'exe' || $fileExt == 'bat' || $fileExt == 'msi' || $fileExt == 'cmd'
-            || $fileExt == 'shell' || $fileExt == 'ini' || $fileExt == 'py' || $fileExt == 'sql' || $fileExt == 'oft'
-            || $fileExt == 'eml' || $fileExt == 'tiff' || $fileExt == 'tif' || $fileExt == 'gif' || $fileExt == 'html'
-            || $fileExt == 'htm' || $fileExt == 'xhtml' || $fileExt == 'src' || $fileExt == 'tmp' || $fileExt == 'cab'
-            || $fileExt == 'dll' || $fileExt == 'sys' || $fileExt == 'ai' || $fileExt == 'psd' || $fileExt == 'crd'
-            || $fileExt == 'raw' || $fileExt == 'jfif' || $fileExt == 'exif' || $fileExt == 'eps' || $fileExt == 'mkv') {
+        $Extension = ['image/png', 'image/jpeg', 'application/pdf', 'application/octet-stream', 'application/x-zip-compressed',
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
-            $response = "Este tipo de arquivo não é permitido.";
-            return $response;
+        //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, png, jpg, jpeg, rar e zip.
+        $verify = '';
+        if (!in_array($fileType, $Extension)) {
+            $verify = "{$fileName} - Este tipo de arquivo não é permitido.";
+            return $verify;
         }
 
-        return $upload;
+        $separator = explode('.', $fileName);
+        $fileExt = $separator[1];
+
+        $newFileName = md5($fileName) . time() . '.' . $fileExt;
+        $destination = $dir . $newFileName;
+
+        move_uploaded_file($fileTemp, $destination);
+
+        return['name' => $fileName, 'encrypt' => $newFileName, "destination" => $destination];
     }
 
     /**
@@ -164,7 +169,8 @@ class Upload {
      * Método público responsável por realizar o upload de um único arquivo para seu projeto
      * @param $dir
      * @param $input_name
-     * @return array
+     * @param $newFolder
+     * @return array|mixed|string
      */
     public function UploadFile($dir, $input_name, $newFolder = false) {
         ini_get('post_max_size');
@@ -172,21 +178,13 @@ class Upload {
         $folderDir = $dir . '/';
 
         //Se a pasta não existir
-        if ($newFolder == true || !is_dir($folderDir)) {
-            $folderDir = $this->Folder($dir);
+        if ($newFolder === true || !is_dir($dir)) {
+            $dir = $this->Folder($dir, $newFolder);
+        } else {
+            $dir = $dir . '/';
         }
         
-        $upload = $this->VerifySimple($input_name);
-
-        $fileName = $upload['name'];
-        $fileTemp = $upload['tmp_name'];
-        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-
-        $newFileName = md5($fileName) . time() . '.' . $fileExt;
-        $destination = $folderDir . $newFileName;
-
-        move_uploaded_file($fileTemp, $destination);
-
+        $upload = $this->VerifySimple($dir, $input_name);
         return['name' => $fileName, 'encrypt' => $newFileName, "destination" => $destination];
 
     }

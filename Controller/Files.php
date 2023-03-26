@@ -199,7 +199,7 @@ class Files
      * @param $newFolder
      * @return bool|string
      */
-    public function CreateFileMultiple($folder, $dir, array $files, array $contents, $newFolder = false) {
+    public function CreateFileMultiple($dir, array $files, array $contents, $newFolder = false) {
 
         //Faz a contagem dos arrays dos parâmetros enviados pela aplicação
         $countFiles = count($files);
@@ -223,7 +223,7 @@ class Files
         }
 
         //Cria através do for os arquivos na pasta indicada
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $countFiles; $i++) {
             $fopen = fopen($dir . '/' . $files[$i], 'w');
             fwrite($fopen, $contents[$i]);
             fclose($fopen);

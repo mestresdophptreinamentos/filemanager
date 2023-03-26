@@ -28,14 +28,9 @@ class Upload {
      * @param $dir
      * @return string
      */
-    public function Folder($dir, $verifyFolder = false) {
+    public function Folder($dir) {
 
         date_default_timezone_set("America/Sao_paulo");
-
-        //Se não for preciso criar nenhuma pasta adicional, o código é interrompido
-        if($verifyFolder == false){
-            return 1;
-        }
 
         //Se há necessidade de criar uma pasta então é executado o restante do código abaixo.
         $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/';
@@ -175,7 +170,13 @@ class Upload {
     public function UploadFile($dir, $input_name, $newFolder = false) {
         ini_get('post_max_size');
 
-        $folderDir = $this->Folder($dir, $newFolder);
+       $folderDir = $dir .'/';
+
+        //Se a pasta não existir
+        if($newFolder == true || !is_dir($folderDir)){
+            $folderDir = $this->Folder($dir, $newFolder);
+        }
+        
         $upload = $this->VerifySimple($input_name);
 
         $fileName = $upload['name'];

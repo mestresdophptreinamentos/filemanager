@@ -33,7 +33,15 @@
  *
  *  ---------------
  *  Criar novo arquivo (Create New File)
- *  Call (Chamada):  $Files->CreateFile("Documents/Reads/", "read1.txt", "teste3");
+ *  Call (Chamada):  $Files->CreateFile("Documents/Reads", "read1.txt", "teste3");
+ *  Note (Observação):
+ *  - If the Documents/Reads folder already exists, the Year/Mounth/Day/read1.txt folders will be created; if the
+  * your wish is to put inside the following directory [Documents/Reads/Year/Mounth/Day], add only the following
+  * Documents/Reads in the first parameter.
+ *
+ *  - Se a pasta Documents/Reads já existir, será criado as pastas Year/Mounth/Day/read1.txt ; se o
+ *  seu desejo é colocar dentro do seguinte diretório [Documents/Reads/Year/Mounth/Day], adicione somente o seguinte
+ * Documents/Reads no primeiro parâmetro.
  *  ---------------
  *
  *  ---------------
@@ -62,7 +70,7 @@
  *  ---------------
  *
  *  ---------------
- *  Escrita de Arquivo (Write File)
+ *  Sobrescrita de Arquivo (Write File)
  *  Call (Chamada):  $Files ->FileWrite("Documents/read.txt", "Estou programando em PHP OO nessa série 1");
  *  ---------------
  *
@@ -75,11 +83,7 @@
  *  Remover Pasta (Remove Folder)
  *  Call (Chamada):  $Files->RemoveDir("Documents/Excluir/Subpasta");
  *  ---------------
- *
- *  ---------------
- *  Remover Pasta (Remove Folder)
- *  Call (Chamada):  $Files->RemoveDir("Documents/Excluir/Subpasta");
- *  ---------------
+
  *
  *  ---------------
  *  Remover Diretório (Remove Directory)

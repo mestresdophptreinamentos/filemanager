@@ -128,13 +128,13 @@ class Upload {
 
                 //Extensões permitidas
                 $Extension = ['image/png', 'image/jpeg', 'application/pdf', 'application/octet-stream', 'application/x-zip-compressed',
-                   'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                   'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+                    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
                 //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, png, jpg, jpeg, rar e zip.
                 $verify = '';
-                if(!in_array($fileType, $Extension)) {
+                if (!in_array($fileType, $Extension)) {
                     $verify = "{$fileName} - Este tipo de arquivo não é permitido.";
                     echo $verify;
                 }
@@ -167,10 +167,10 @@ class Upload {
     public function UploadFile($dir, $input_name, $newFolder = false) {
         ini_get('post_max_size');
 
-       $folderDir = $dir .'/';
+        $folderDir = $dir . '/';
 
         //Se a pasta não existir
-        if($newFolder == true || !is_dir($folderDir)){
+        if ($newFolder == true || !is_dir($folderDir)){
             $folderDir = $this->Folder($dir);
         }
         
@@ -205,7 +205,7 @@ class Upload {
         $count = count($upload['name']);
 
         //Se a pasta não existir
-        if($newFolder === true || !is_dir($dir)) {
+        if ($newFolder === true || !is_dir($dir)) {
             $dir = $this->Folder($dir, $newFolder);
         } else {
             $dir = $dir . '/';

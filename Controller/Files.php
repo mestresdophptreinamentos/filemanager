@@ -260,11 +260,12 @@ class Files
         fclose($fopen);
     }
 
+
     /**
      * Método público responsável pela sobrescrita de novo conteúdo em um arquivo já existente.
      * @param $file
      * @param $text
-     * @return bool
+     * @return void
      */
     public function FileWrite($file, $text) {
 

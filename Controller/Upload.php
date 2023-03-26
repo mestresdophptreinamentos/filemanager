@@ -103,14 +103,14 @@ class Upload {
         date_default_timezone_set("America/Sao_paulo");
         
         if ($par) {
-            $fileName;
-            $fileSize;
-            $fileType;
-            $fileTemp;
-            $fileError;
-            $fileExt;
-            $destination;
-            
+            $fileName = '';
+            $fileSize = '';
+            $fileType = '';
+            $fileTemp = '';
+            $fileError = '';
+            $fileExt = '';
+            $destination = '';
+
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES['attach'];
                 $fileName[$i] = $upload['name'][$i];
@@ -244,8 +244,9 @@ class Upload {
 
         $Files = new Files();
         $Files -> CreateSubDir($folder, $subFolder);
+        $counter = count($files);
 
-        for ($a = 0; $a < count($files); $a++) {
+        for ($a = 0; $a < $counter; $a++) {
             $Files->MoveFile([$files[$a]], $DirOrigin, $DirDest);
         }
 

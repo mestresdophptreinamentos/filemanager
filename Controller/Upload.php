@@ -96,28 +96,29 @@ class Upload {
     }
 
     /**
-     * Método privado responsável por gerenciar armazenamento de informações do upload de vários arquivos. 
+     * Método privado responsável por gerenciar armazenamento de informações do upload de vários arquivos.
      * @param bool $par
      * @param $count
      * @param $dir
-     * @return array|string|void
+     * @param $input_name
+     * @return string|void
      */
-    private function VerifyMultiple(bool $par = false, $count = '', $dir) {
+    private function VerifyMultiple(bool $par = false, $count = '', $dir, $input_name) {
         date_default_timezone_set("America/Sao_paulo");
         
         if ($par) {
-            $fileName = '';
-            $fileSize = '';
-            //$fileType = '';
-            $fileTemp = '';
-            //$fileError = '';
-            $fileExt = '';
-            $destination = '';
-            $newFileName = '';
-            $response = '';
+            $fileName[0] = '';
+            $fileSize[0] = '';
+            //$fileType[0] = '';
+            $fileTemp[0] = '';
+            //$fileError[0] = '';
+            $fileExt[0] = '';
+            $destination[0] = '';
+            $newFileName[0] = '';
+            $response[0] = '';
 
             for ($i = 0; $i < $count; $i++) {
-                $upload = $_FILES['attach'];
+                $upload = $_FILES[$input_name];
                 $fileName[$i] = $upload['name'][$i];
                 $fileSize[$i] = $upload['size'][$i];
                 //$fileType[$i] = $upload['type'][$i];
@@ -146,9 +147,7 @@ class Upload {
 
                 $newFileName[$i] = md5($fileName[$i]) . time() . '.' . $fileExt[$i];
 
-                $folderDir = $dir . '/' . date('Y') . '/' . date('m') . '/' . date('d') . '/';
-
-                $destination[$i] = $folderDir . $newFileName[$i];
+                $destination[$i] = $dir . $newFileName[$i];
 
                 if (!empty($fileName[$i])) {
                     move_uploaded_file($fileTemp[$i], $destination[$i]);
@@ -206,10 +205,16 @@ class Upload {
 
         $counter = count($upload['name']);
 
-        $this->Folder($dir, $newFolder);
-        $upload = $this->VerifyMultiple(true, $counter, $dir);
+        $dir = $dir . '/';
 
-        return $upload;
+        //Se a pasta não existir
+        if($newFolder == true || !is_dir($dir)){
+            $dir = $this->Folder($dir, $newFolder);
+        }
+
+        $uploads = $this->VerifyMultiple(true, $count, $dir, $input_name);
+
+        return $uploads;
     }
 
     /**

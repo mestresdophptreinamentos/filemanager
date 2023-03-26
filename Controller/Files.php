@@ -105,7 +105,7 @@ class Files
      * @param $contents
      * @return false|void
      */
-    private function FileMultiple($folder, $dir, $files, $count, $contents, $newFolder = false) {
+    private function FileMultiple($dir, $files, $count, $contents, $newFolder = false) {
         if ($newFolder == true) {
             $Upload = new Upload();
             $Upload ->Folder($dir);
@@ -209,11 +209,12 @@ class Files
      * @param $text
      * @return bool
      */
-    public function CreateFile($dir, $file = "", $text = "", $newFolder = false) {
+    public function CreateFile($dir, $file = "", $text = "") {
 
-        //Verifica se o arquivo existe
+        //Verifica se o diretório existe
         if (file_exists($dir . '/' . $file)) {
-            return false;
+            $Upload = new Upload();
+            $Upload ->Folder($dir);
         }
 
         $this->mountFileWrite($dir, $file, $text);

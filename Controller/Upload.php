@@ -205,11 +205,11 @@ class Upload {
 
         $counter = count($upload['name']);
 
-        $dir = $dir . '/';
-
-        //Se a pasta não existir
-        if($newFolder == true || !is_dir($dir)){
+       //Se a pasta não existir
+        if($newFolder === true || !is_dir($dir)) {
             $dir = $this->Folder($dir, $newFolder);
+        } else {
+            $dir = $dir . '/';
         }
 
         $uploads = $this->VerifyMultiple(true, $count, $dir, $input_name);

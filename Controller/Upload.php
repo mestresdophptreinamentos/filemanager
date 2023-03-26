@@ -70,7 +70,9 @@ class Upload {
         /*$fileType = $upload['type'];
         $fileTemp = $upload['tmp_name'];
         $fileError = $upload['error'];*/
-        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+        $Ext = (pathinfo($fileName, PATHINFO_EXTENSION));
+        $fileExt = mb_strtolower($Ext);
 
         //Verifica se o tamanho do arquivo não ultrapassa 5Mb
         if ($fileSize > 5242880) {
@@ -122,7 +124,9 @@ class Upload {
                 //$fileType[$i] = $upload['type'][$i];
                 $fileTemp[$i] = $upload['tmp_name'][$i];
                 //$fileError[$i] = $upload['error'][$i];
-                $fileExt[$i] = mb_strtolower(pathinfo($fileName[$i], PATHINFO_EXTENSION));
+
+                $Ext[$i] = (pathinfo($fileName[$i], PATHINFO_EXTENSION));
+                $fileExt[$i] = mb_strtolower($Ext[$i]);
 
                 //Verifica se o tamanho do arquivo não ultrapassa 5Mb
                 if ($fileSize[$i] > 5242880) {
@@ -174,7 +178,9 @@ class Upload {
 
         $fileName = $upload['name'];
         $fileTemp = $upload['tmp_name'];
-        $fileExt = mb_strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        
+        $Ext = (pathinfo($fileName, PATHINFO_EXTENSION));
+        $fileExt = mb_strtolower($Ext);
 
         $newFileName = md5($fileName) . time() . '.' . $fileExt;
         $destination = $folderDir . $newFileName;

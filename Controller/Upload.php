@@ -21,6 +21,8 @@ use Controller\Files;
 
 class Upload {
 
+    public $count;
+
      /**
      * Método público responsável por gerenciar a criação de pastas.
      * @param $dir

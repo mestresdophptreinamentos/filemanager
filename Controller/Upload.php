@@ -113,8 +113,8 @@ class Upload {
 
         if ($par) {
             $explode = '';
-            $response = '';
-            
+            $response[0] = '';
+
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES[$input_name];
                 $fileName = $upload['name'][$i];
@@ -151,19 +151,13 @@ class Upload {
 
                 if (!empty($fileName) && !$verify) {
                     move_uploaded_file($fileTemp, $destination);
-
-                    $response = "count => {$count}, name => {$fileName}, encrypt => {$newFileName}, destination => {$destination}";
+                    $response[] = [$count, $fileName, $newFileName,$destination];
                 }
-
-                $explode[] = explode(", ", $response);
             }
 
-            return $explode;
-
-
+            return $response;
         }
     }
-
 
     /**
      * Método público responsável por realizar o upload de um único arquivo para seu projeto
@@ -208,7 +202,10 @@ class Upload {
             $dir = $dir . '/';
         }
 
-        $uploads = $this->VerifyMultiple(true, $count, $dir, $input_name);
+        $up = $this->VerifyMultiple(true, $count, $dir, $input_name);
+
+        //Limpa arrays vazios, caso venham
+        $uploads = array_filter($up);
 
         return $uploads;
     }

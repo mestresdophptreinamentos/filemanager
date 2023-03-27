@@ -112,8 +112,7 @@ class Upload {
         date_default_timezone_set("America/Sao_paulo");
 
         if ($par) {
-            $explode = '';
-            $response[0] = '';
+            $response[0] = array();
 
             for ($i = 0; $i < $count; $i++) {
                 $upload = $_FILES[$input_name];
@@ -151,7 +150,7 @@ class Upload {
 
                 if (!empty($fileName) && !$verify) {
                     move_uploaded_file($fileTemp, $destination);
-                    $response[] = [$count, $fileName, $newFileName,$destination];
+                    $response[] = [$count, $fileName, $newFileName, $destination];
                 }
             }
 

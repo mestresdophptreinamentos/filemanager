@@ -84,7 +84,6 @@ class Upload {
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 
         //Verifica se a extensão do arquivo é do tipo documentos do pacote office, pdf, png, jpg, jpeg, rar e zip.
-        $verify = '';
         if (!in_array($fileType, $Extension)) {
             $verify = "{$fileName} - Este tipo de arquivo não é permitido.";
             return $verify;

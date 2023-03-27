@@ -61,10 +61,11 @@ class Upload {
 
     /**
      * Método privado responsável por gerenciar armazenamento de informações do upload de um único arquivo.
+     * @param $dir
      * @param $input_name
      * @return mixed|string
      */
-    private function VerifySimple($input_name) {
+    private function VerifySimple($dir, $input_name) {
         $upload = $_FILES[$input_name];
         $fileName = $upload['name'];
         $fileSize = $upload['size'];

@@ -344,28 +344,27 @@ class Files
         //Faz a limpeza da string, se necessário.
         $dirVerify = str_replace("\\", "/", $dir);
 
-        //Verifica se diretório informado existe.
-        if (is_dir($dirVerify) && file_exists($dirVerify)) {
+        //Se existir o diretório, mas não existir o arquivo, retorna false.
+        if (is_dir($dirVerify . "/" . $files[$a]) && !file_exists($dirVerify . "/" . $files[$a])) {
+            return false;
+        } else {
+            
             $counter = count($files);
 
             //Processa cada um dos arquivos mencionados no parâmetro $files
             for ($a = 0; $a < $counter; $a++) {
 
-                //Se existir o diretório, mas não existir o arquivo, retorna false.
-                if (is_dir($dirVerify . "/" . $files[$a]) && !file_exists($dirVerify . "/" . $files[$a])) {
-                    return false;
+                //Verifica se o arquivo existe, se sim, faz a exclusão.
+                if (file_exists($dirVerify . "/" . $files[$a])) {
+                    unlink($dirVerify . "/" . $files[$a]);
                 } else {
-                    //Verifica se o arquivo existe, se sim, faz a exclusão.
-                    if (file_exists($dirVerify . "/" . $files[$a])) {
-                        unlink($dirVerify . "/" . $files[$a]);
-                    } else {
-                        echo "Esse Arquivo Não Existe: {$files[$a]}<br>";
+                    echo "Esse Arquivo Não Existe: {$files[$a]}<br>";
 
-                    }
                 }
             }
+
+            return true;
         }
-        return true;
     }
 
     /**
